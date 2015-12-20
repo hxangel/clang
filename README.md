@@ -1,2 +1,4 @@
 # clang
-```C example
+```
+    C example
+```
