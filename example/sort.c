@@ -46,8 +46,3 @@ int desc(int x, int y) {
 int asc(int x, int y) {
     return x < y;
 }
-
-int add(int x, int y) {
-    printf("add:");
-    return x + y;
-}

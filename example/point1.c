@@ -1,11 +1,9 @@
 #include <stdio.h>
 
-int main()
-{
-    int number;
-
-    printf("Enter an integer\n");
-    scanf("%d",&number);
-
-    printf("Integer entered by you is %d\n", number);
+int main() {
+    int num[] = {12, 42, 81, 99, 83, 11};
+    int *p = num;
+    printf("%d\n", *p+1);
+    printf("%d\n", *p++);
+    printf("%d", *(p+1));
 }
