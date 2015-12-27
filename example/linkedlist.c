@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 
 typedef struct contact {
     char name[30];
@@ -15,157 +16,86 @@ void list();
 
 void create();
 
-void read();
+void find();
 
 void delete();
 
 void insert();
 
-void ysfx();
-
-void ysf();
-
-int josephus(int n, int k);
-
-int getMonkey(int n, int k);
 
 int main() {
-    int rest = getMonkey(45, 9);
-    printf("%d",rest);
-    ysfx();
+//    struct contact *pr;
+//    char name[30];
+//    char phone[30];
+//    create(name, phone, *pr);
+//    list();
+    find();
 }
 
 
-int getMonkey(int n, int m) {
-    int a[n],c,t;
-
-    for (int i = 0; i < n; ++i) {
-        a[i]=i;
-    }
-
-    c = n;
-    t = 0;
-    while (c > 1) {
-        t = m % c + t;
-        t = (t > c) ? t % c : t;
-        t = t > 0 ? --t : 0;
-        array_splice(a, t, 1);
-        --c;
-        t = t == 0 ? t = c : t;
-
-    }
-    return a;
-}
-
-void ysf() {
-    int num[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    int j = 1, cur = 0, n = 10, m = 3;
-
-    for (int i = 1; i < 10; ++i) {
-        printf("%d", cur);
-        cur = (3 + cur) % i;
-    }
-    printf("%d", cur);
-}
-
-int josephus(int n, int k) {
-    int s = 0;
-    for (int i = 2; i <= n; i++)
-        s = (s + k) % i;
-    return s;
-}
-
-void ysfx() {
-//    369
-//    27
-//    18
-//    10
-//    5
-//    i+3/10
-    int num[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    int m = 3, n = 10, max;//m为数字,n为第几个退出,max为最大数
-    for (int i = 0; i < n; ++i) {
-        printf("%d \t", num[i]);
-        if (num[i] == 0)continue;
-        if (num[i] % 3 == 0) {
-            num[i] = 0;
-            continue;
+void create() {
+    struct contact *p, *pr;
+//    scanf()
+//    fflush();
+    for (int i = 0; i < 5; ++i) {
+        p = (struct contact *) malloc(sizeof(struct contact));
+        if (p == NULL) {
+            printf("No enough memory. \n");
+            exit(0);
         }
-    }
-    printf("\n");
-    int j = 1, cur = 0;
-    for (int i = 0; i < n; i++) {
-        printf("%d \t", num[i]);
-
-        if (num[i] == 0)continue;
-        j++;
-        cur = num[i];
-        if (j == 3) {
-            num[i] = 0;
-            j = 0;
-            continue;
+        fgets(p->name, 30, stdin);
+//        fgets(p->phone, 30, stdin);
+        if (head == NULL) {
+            head = p;
+            pr = p;
+            pr->next = NULL;
+//            printf("%s", pr->name);
+        } else {
+            pr->next = p;
+            pr = p;
+            pr->next = NULL;
+//            printf("%s", pr->name);
         }
-//   1     100%3
-//   2     100%3+1
-//   3     100%3+2
-//        printf("%d \t", num[i]);
-    }
-    printf("\n");
-    j = 2;
-    for (int i = 0; i < n; ++i) {
-        printf("%d \t", num[i]);
-        if (num[i] == 0)continue;
-        j++;
-        cur = num[i];
-        if (j == 3) {
-            num[i] = 0;
-            j = 0;
-            continue;
-        }
-    }
-    printf("\n");
-    j = 0;
-    for (int i = 0; i < n; ++i) {
-        printf("%d \t", num[i]);
-
-        if (num[i] == 0)continue;
-        j++;
-        cur = num[i];
-        if (j == 3) {
-            num[i] = 0;
-            j = 0;
-            continue;
-        }
-    }
-    printf("\n");
-    j = 1;
-    for (int i = 0; i < n; ++i) {
-        printf("%d \t", num[i]);
-
-        if (num[i] == 0)continue;
-        j++;
-        cur = num[i];
-        if (j == 3) {
-            num[i] = 0;
-            j = 0;
-            continue;
-        }
-    }
-    printf("\n");
-    for (int i = 0; i < n; ++i) {
-        printf("%d \t", num[i]);
     }
 }
 
-void create();
+void find() {
+    char *a = "eLLO";
+    char *b = "LL";
+    char *x = strstr("Hello", "Hell");
+    printf("%s", x);
+}
 
 void read();
 
-void delete();
+void delete() {
+    struct contact *p, *pr;
+    pr->next = p->next;
+    free(p);
+}
 
-void insert();
+void insert() {
+    struct contact *p, *pr;
+    //头插入
+    p->next = head;
+    head = p;
+    //中间插入
+    p->next = pr->next;
+    pr->next = p;
+    //尾插入
+    pr->next = p;
+    p->next = NULL;
+}
 
 void list() {
-
+    struct contact *p;
+    p = head;
+    int i = 0;
+    while (p != NULL) {
+        printf("%d:%s", i, p->name);
+        i++;
+        p = p->next;
+    }
+//    printf("%s", i, p->name);
 }
 
